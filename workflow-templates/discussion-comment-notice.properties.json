@@ -1,0 +1,8 @@
+{
+  "name": "discussion-comment-notice",
+  "description": "Notify Slack when a discussion comment is created.",
+  "iconName": "example-icon",
+  "categories": [
+      "utilities"
+  ]
+}

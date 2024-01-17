@@ -1,0 +1,13 @@
+on:
+  discussion_comment:
+    types: [created]
+
+jobs:
+  discussion_commented:
+    if: github.event.discussion && github.event.comment
+    uses: route06/actions/.github/workflows/_discussions-comment-notice.yml@v1
+    secrets:
+      # NOTE: このコメントは設定が終わり次第不要なため削除してください！
+      # Slackへの通知には、1. Slack AppでWebhook URLを作成 2. GitHubのRepository SecretsにWebhook URLを追加 の2つの設定が必要です。以下を参考に設定してください。
+      # https://docs.route06.co.jp/docs/knowledge/contents/github-notification-setting-for-slack/#discussionに対してのコメントの通知も受け取りたい場合
+      slack-webhook-url: ${{ secrets.SLACK_GHD_WEBHOOK_URL }}
