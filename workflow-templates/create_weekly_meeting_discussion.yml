@@ -18,8 +18,8 @@ env:
   # https://github.com/<org>/<repo>/discussions/categories/meeting-notes
   DISCUSSION_CATEGORY_SLUG: "meeting-notes"
   # NOTE: descriptionに利用するテンプレートファイルを事前に準備し、パスを指定してください。
-  # 以下は、リポジトリに "_templates/weekly_discussion/huddle.md" というファイルがある想定です。
-  DESCRIPTION_TEMPLATE_PATH: "_templates/weekly_discussion/huddle.md"
+  # 以下は、リポジトリに "_templates/weekly_meeting_discussion/huddle.md" というファイルがある想定です。
+  DESCRIPTION_TEMPLATE_PATH: "_templates/weekly_meeting_discussion/huddle.md"
 
 jobs:
   get_next_scheduled_date:
@@ -29,7 +29,7 @@ jobs:
       target_day: $TARGET_DAY
   
   create_discussion:
-    needs: get_next_meeting_date
+    needs: get_next_scheduled_date
     uses: route06/actions/.github/workflows/create_discussion.yml@v2
     with:
       title: ${{ needs.get_next_scheduled_date.outputs.next_scheduled_date }} $TITLE
