@@ -1,0 +1,35 @@
+name: Create weekly meeting discussion
+
+on:
+  workflow_dispatch:
+  schedule:
+    # NOTE: Discussionを作成するタイミングに合わせて修正してください。
+    # 例:
+    # 毎週水曜13:00に作成する → cron: "0 4 * * wed"
+    # 毎週月曜8:00に作成する → cron: "0 23 * * sun"
+    - cron: "0 4 * * wed"
+
+jobs:
+  calc_next_weekly_date:
+    uses: route06/actions/.github/workflows/calc_next_date.yml@v2
+    with:
+      interval: weekly
+      # NOTE: ミーティング実施曜日を指定してください。
+      # 金曜日に実施する場合は target_day: friday となります。
+      target_day: wednesday
+  
+  create_discussion:
+    needs: [calc_next_weekly_date]
+    uses: route06/actions/.github/workflows/create_gh_discussion.yml@v2
+    with:
+      # NOTE: タイトルを修正してください。以下は、「yyyy/mm/dd タイトル」となります。
+      # 「yyyy/mm/dd 週次定例」としたい場合は title: ${{ needs.calc_next_weekly_date.outputs.next_date }} 週次定例 となります。
+      title: ${{ needs.calc_next_weekly_date.outputs.next_date }} タイトル
+      # NOTE: 設定したいカテゴリに合わせて修正してください。
+      # 指定するのは、各カテゴリを選択した時のURL末尾の文字列です。
+      # https://github.com/<org>/<repo>/discussions/categories/meeting-notes
+      # カテゴリ Meeting notesの場合は、上記のURLのように "meeting-notes" となるため category_slug: meeting-notes となります。
+      category_slug: ideas
+      # NOTE: descriptionに利用するテンプレートファイルを事前に準備し、パスを指定してください。
+      # 以下は、リポジトリに "_templates/weekly_meeting_discussion/huddle.md" というファイルがある想定です。
+      description_template_path: _templates/weekly_meeting_discussion/huddle.md
