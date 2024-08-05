@@ -1,5 +1,5 @@
 {
-  "name": "discussion-comment-notice",
+  "name": "Discussion comment to Slack",
   "description": "Notify Slack when a discussion comment is created.",
   "categories": [
       "utilities"
