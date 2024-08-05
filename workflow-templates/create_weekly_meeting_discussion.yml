@@ -1,6 +1,7 @@
 name: Create weekly meeting discussion
 
 on:
+  workflow_dispatch:
   schedule:
     # NOTE: Discussionを作成するタイミングに合わせて修正してください。
     # 例:
