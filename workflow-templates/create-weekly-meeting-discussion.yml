@@ -6,6 +6,7 @@ on:
     # 例:
     # 毎週水曜13:00に作成する → cron: "0 4 * * wed"
     # 毎週月曜8:00に作成する → cron: "0 23 * * sun"
+    # ref: https://docs.github.com/ja/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule
     - cron: "0 4 * * wed"
 
 jobs:
