@@ -31,6 +31,7 @@ jobs:
       # https://github.com/<org>/<repo>/discussions/categories/meeting-notes
       # カテゴリ Meeting notesの場合は、上記のURLのように "meeting-notes" となるため category_slug: meeting-notes となります。
       category_slug: ideas
-      # NOTE: descriptionに利用するテンプレートファイルを事前に準備し、パスを指定してください。
-      # 以下は、リポジトリに "_templates/weekly_meeting_discussion/huddle.md" というファイルがある想定です。
-      description_template_path: _templates/weekly_meeting_discussion/huddle.md
+      # NOTE: 本文に利用するテンプレートファイルを作成し、パスを指定してください。
+      # 以下は、リポジトリに "_templates/weekly_meeting_discussion/body.md" というファイルがある想定です。
+      # ファイルが見つからない場合、本文が空のDiscussionが作成されます。
+      description_template_path: _templates/weekly_meeting_discussion/body.md
